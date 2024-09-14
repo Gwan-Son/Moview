@@ -8,12 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var viewModel = MovieViewModel()
+    
     var body: some View {
         VStack {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundStyle(.tint)
-            Text("Hello, world!")
+            ForEach(viewModel.movies) { movie in
+                Text(movie.title)
+            }
         }
         .padding()
     }

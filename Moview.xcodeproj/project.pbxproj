@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9FAB1B652C9565FD00413770 /* MovieService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAB1B642C9565FD00413770 /* MovieService.swift */; };
+		9FAB1B672C95661400413770 /* MovieResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAB1B662C95661400413770 /* MovieResponse.swift */; };
+		9FAB1B6C2C956E1F00413770 /* MovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAB1B6B2C956E1F00413770 /* MovieViewModel.swift */; };
+		9FAB1B6E2C9572B700413770 /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAB1B6D2C9572B700413770 /* MovieModel.swift */; };
 		9FAF061A2C95550500C009AF /* MoviewApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAF06192C95550500C009AF /* MoviewApp.swift */; };
 		9FAF061C2C95550500C009AF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAF061B2C95550500C009AF /* ContentView.swift */; };
 		9FAF061E2C95550700C009AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FAF061D2C95550700C009AF /* Assets.xcassets */; };
@@ -16,6 +20,12 @@
 
 /* Begin PBXFileReference section */
 		0F6FC62C3F81EE38BDDF5F79 /* Pods_Moview.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Moview.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9FAB1B642C9565FD00413770 /* MovieService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieService.swift; sourceTree = "<group>"; };
+		9FAB1B662C95661400413770 /* MovieResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieResponse.swift; sourceTree = "<group>"; };
+		9FAB1B6B2C956E1F00413770 /* MovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewModel.swift; sourceTree = "<group>"; };
+		9FAB1B6D2C9572B700413770 /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
+		9FAB1B6F2C957EF300413770 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
+		9FAB1B702C95809100413770 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9FAF06162C95550500C009AF /* Moview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FAF06192C95550500C009AF /* MoviewApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviewApp.swift; sourceTree = "<group>"; };
 		9FAF061B2C95550500C009AF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -37,6 +47,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9FAB1B682C95662500413770 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				9FAB1B642C9565FD00413770 /* MovieService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		9FAB1B692C95663600413770 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9FAB1B662C95661400413770 /* MovieResponse.swift */,
+				9FAB1B6D2C9572B700413770 /* MovieModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9FAB1B6A2C956E0C00413770 /* MovieView */ = {
+			isa = PBXGroup;
+			children = (
+				9FAB1B6B2C956E1F00413770 /* MovieViewModel.swift */,
+			);
+			path = MovieView;
+			sourceTree = "<group>";
+		};
 		9FAF060D2C95550500C009AF = {
 			isa = PBXGroup;
 			children = (
@@ -58,10 +93,15 @@
 		9FAF06182C95550500C009AF /* Moview */ = {
 			isa = PBXGroup;
 			children = (
+				9FAB1B702C95809100413770 /* Info.plist */,
 				9FAF06192C95550500C009AF /* MoviewApp.swift */,
 				9FAF061B2C95550500C009AF /* ContentView.swift */,
+				9FAB1B6A2C956E0C00413770 /* MovieView */,
+				9FAB1B692C95663600413770 /* Model */,
+				9FAB1B682C95662500413770 /* Service */,
 				9FAF061D2C95550700C009AF /* Assets.xcassets */,
 				9FAF061F2C95550700C009AF /* Preview Content */,
+				9FAB1B6F2C957EF300413770 /* Secrets.xcconfig */,
 			);
 			path = Moview;
 			sourceTree = "<group>";
@@ -80,7 +120,6 @@
 				FAD459DE1C33A423E52834D5 /* Pods-Moview.debug.xcconfig */,
 				A21D23B0CCA49BFEF88A2D1A /* Pods-Moview.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -206,7 +245,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FAB1B6E2C9572B700413770 /* MovieModel.swift in Sources */,
 				9FAF061C2C95550500C009AF /* ContentView.swift in Sources */,
+				9FAB1B6C2C956E1F00413770 /* MovieViewModel.swift in Sources */,
+				9FAB1B672C95661400413770 /* MovieResponse.swift in Sources */,
+				9FAB1B652C9565FD00413770 /* MovieService.swift in Sources */,
 				9FAF061A2C95550500C009AF /* MoviewApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -216,6 +259,7 @@
 /* Begin XCBuildConfiguration section */
 		9FAF06222C95550700C009AF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9FAB1B6F2C957EF300413770 /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -266,7 +310,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -279,6 +323,7 @@
 		};
 		9FAF06232C95550700C009AF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9FAB1B6F2C957EF300413770 /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -323,7 +368,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -344,12 +389,15 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Moview/Preview Content\"";
 				DEVELOPMENT_TEAM = 7P5U4N4C5Z;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Moview/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -374,12 +422,15 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Moview/Preview Content\"";
 				DEVELOPMENT_TEAM = 7P5U4N4C5Z;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Moview/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
