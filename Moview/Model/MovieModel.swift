@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MovieModel: Identifiable {
+struct MovieModel: Hashable, Identifiable {
     var id: Int
     var original_language: OriginalLanguage
     var original_title: String
@@ -16,6 +16,6 @@ struct MovieModel: Identifiable {
     var poster_path: String
     var release_date: String
     var title: String
-    var vote_average: Double
+    var vote_average: String
     var vote_count: Int
 }
