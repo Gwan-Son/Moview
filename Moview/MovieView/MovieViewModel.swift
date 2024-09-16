@@ -32,10 +32,10 @@ class MovieViewModel: ObservableObject {
                     original_title: item.originalTitle,
                     overview: item.overview,
                     popularity: item.popularity,
-                    poster_path: item.posterPath,
+                    poster_path: "https://image.tmdb.org/t/p/w500\(item.posterPath)",
                     release_date: item.releaseDate,
                     title: item.title,
-                    vote_average: item.voteAverage,
+                    vote_average: String(format: "%.1f%%", item.voteAverage * 10),
                     vote_count: item.voteCount
                 )
                 self.movies.append(movie)
