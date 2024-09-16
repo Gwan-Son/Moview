@@ -14,8 +14,6 @@ class MovieService {
     func getMovie(completion: @escaping (MovieResponse?) -> Void) {
         let url = "https://api.themoviedb.org/3/discover/movie"
         
-        print("apiKey: \(apiKey)")
-        
         let params: [String: String] = [
             "api_key": apiKey,
             "include_adult": "false",
