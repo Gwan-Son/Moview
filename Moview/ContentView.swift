@@ -11,71 +11,61 @@ import Kingfisher
 struct ContentView: View {
     @StateObject var viewModel = MovieViewModel()
     
-    @State private var currentPage = 0
-    @State private var timer: Timer?
+    let genres: [(String, Int)] = [("액션",28),("모험",12),("애니메이션",16),("코미디",35),("범죄",80),("다큐멘터리",99),("드라마",18),("가족",10751),("판타지",14),("역사",36),("공포",27),("음악",10402),("미스터리",9648),("로맨스",10749),("SF",878),("TV 영화",10770),("스릴러",53),("전쟁",10752),("서부",37)]
     
     var body: some View {
         VStack {
             // 추천 영화
-            TabView(selection: $currentPage) {
-                ForEach(Array(viewModel.movies.prefix(4).enumerated()), id: \.element) { index, movie in
-                    
-                    VStack(alignment: .leading) {
-                        ZStack {
-                            KFImage(URL(string: movie.poster_path))
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .overlay(LinearGradient(gradient: Gradient(colors: [Color.clear, Color.black.opacity(0.35)]), startPoint: .top, endPoint: .bottom))
-                            
-                            VStack(alignment: .leading, spacing: 10) {
-                                Spacer()
-                                Text(movie.title)
-                                    .font(.system(size: 20))
+            CardView(viewModel: viewModel)
+            
+            // TODO: - Category Tab
+            ScrollView(.horizontal, showsIndicators: false) {
+                LazyHStack {
+                    ForEach(genres, id: \.1) { genre in
+                        Button {
+                            // TODO: - See Category Tab
+                            print("선택된 장르: \(genre)")
+                        } label: {
+                            ZStack {
+                                Rectangle()
+                                    .frame(width: 100, height: 80)
+                                    .foregroundColor(Color.random)
+                                    .cornerRadius(10)
+                                Text(genre.0)
+                                    .font(.system(size: 18))
                                     .bold()
                                     .foregroundColor(.white)
-                                    .multilineTextAlignment(.leading)
-                                
-                                Text(movie.vote_average)
-                                    .font(.system(size: 15))
-                                    .bold()
-                                    .foregroundColor(.white)
-                                
                             }
-                            .frame(width: UIScreen.main.bounds.width - 40, height: UIScreen.main.bounds.height / 4 ,alignment: .leading)
-                            .padding(.bottom, 20)
-                            
                         }
                     }
-                    .tag(index)
-                    
                 }
             }
-            .tabViewStyle(.page(indexDisplayMode: .never))
-            .frame(width: UIScreen.main.bounds.width - 20, height: UIScreen.main.bounds.height / 4)
-            .cornerRadius(15)
-            .clipped()
-            .onAppear {
-                startTimer()
-            }
-            .onDisappear {
-                stopTimer()
-            }
+            .frame(height: 100)
+            .padding(.leading, 10)
             
-            HStack(spacing: 8) {
-                ForEach(0..<4) { index in
-                    Circle()
-                        .fill(currentPage == index ? Color.orange : Color.gray)
-                        .frame(width: 8, height: 8)
-                        .onTapGesture {
-                            currentPage = index
-                        }
+            // TODO: - Divide Subview
+            HStack {
+                Rectangle()
+                    .frame(width: 5, height: 40)
+                    .foregroundColor(.orange)
+                
+                Text("인기 영화")
+                    .font(.system(size: 20))
+                    .bold()
+                
+                Spacer()
+                
+                Button {
+                    // TODO: - See All Movie List
+                    print("모두 보기 클릭!")
+                } label: {
+                    Text("모두 보기")
+                        .font(.system(size: 16))
+                        .foregroundColor(.orange)
                 }
             }
-            .padding(.top, 8)
+            .padding(.horizontal, 10)
             
-            
-            // 인기 영화
-            Text("인기 영화")
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(spacing: 20) {
                     ForEach(viewModel.movies) { movie in
@@ -111,18 +101,7 @@ struct ContentView: View {
         }
     }
     
-    func startTimer() {
-        timer = Timer.scheduledTimer(withTimeInterval: 4.0, repeats: true) { _ in
-            withAnimation {
-                currentPage = (currentPage + 1) % 4
-            }
-        }
-    }
     
-    func stopTimer() {
-        timer?.invalidate()
-        timer = nil
-    }
 }
 
 #Preview {
