@@ -15,7 +15,7 @@ struct CardView: View {
     
     var body: some View {
         TabView(selection: $currentPage) {
-            ForEach(Array(viewModel.movies.prefix(4).enumerated()), id: \.element) { index, movie in
+            ForEach(Array(viewModel.popularMovies.prefix(4).enumerated()), id: \.element) { index, movie in
                 
                 VStack(alignment: .leading) {
                     ZStack {
@@ -32,16 +32,12 @@ struct CardView: View {
                                 .foregroundColor(.white)
                                 .multilineTextAlignment(.leading)
                             
-                            Text(movie.vote_average)
-                                .font(.system(size: 15))
-                                .bold()
-                                .foregroundColor(.white)
-                            
-                            // TODO: - 레이팅에 따른 프로그래스뷰
+                            CircularProgressView(progress: movie.vote_average)
                             
                         }
                         .frame(width: UIScreen.main.bounds.width - 40, height: UIScreen.main.bounds.height / 4 ,alignment: .leading)
                         .padding(.bottom, 20)
+                        .padding(.leading, 10)
                         
                     }
                 }
@@ -50,7 +46,7 @@ struct CardView: View {
             }
         }
         .tabViewStyle(.page(indexDisplayMode: .never))
-        .frame(width: UIScreen.main.bounds.width - 20, height: UIScreen.main.bounds.height / 4)
+        .frame(width: UIScreen.main.bounds.width - 30, height: UIScreen.main.bounds.height / 4)
         .cornerRadius(15)
         .clipped()
         .onAppear {
@@ -87,5 +83,5 @@ struct CardView: View {
 }
 
 #Preview {
-    CardView(viewModel: MovieViewModel())
+    CardView(viewModel: MovieViewModel(movieService: MovieService()))
 }
