@@ -9,40 +9,55 @@ import Foundation
 import Combine
 
 class MovieViewModel: ObservableObject {
-    @Published var movies = [MovieModel]()
+    @Published var popularMovies = [MovieModel]()
+    @Published var nowPlayingMovies = [MovieModel]()
     @Published var isLoading: Bool = false
     
-    private let movieService = MovieService()
+    private let movieService: MovieService
     
-    init() {
-        fetchMovie()
+    init(movieService: MovieService) {
+        self.movieService = movieService
     }
     
-    func fetchMovie() {
-        movieService.getMovie { [weak self] response in
+    private func fetchMovies(for category: MovieCategory) {
+        isLoading = true
+        
+        let completion: (MovieResponse?) -> Void = { [weak self] response in
             guard let self = self else { return }
-            guard let items = response?.results else { return }
-            
-            self.isLoading = true
-            
-            for item in items {
-                let movie = MovieModel(
-                    id: item.id,
-                    original_language: item.originalLanguage,
-                    original_title: item.originalTitle,
-                    overview: item.overview,
-                    popularity: item.popularity,
-                    poster_path: "https://image.tmdb.org/t/p/w500\(item.posterPath)",
-                    release_date: item.releaseDate,
-                    title: item.title,
-                    vote_average: String(format: "%.1f%%", item.voteAverage * 10),
-                    vote_count: item.voteCount
-                )
-                self.movies.append(movie)
+            guard let results = response?.results else {
+                DispatchQueue.main.async {
+                    self.isLoading = false
+                }
+                return
             }
             
-            self.isLoading = false
+            let movies = results.map { MovieModel(from: $0) }
+            
+            DispatchQueue.main.async {
+                switch category {
+                case .popular:
+                    self.popularMovies = movies
+                case .nowPlaying:
+                    self.nowPlayingMovies = movies
+                }
+                self.isLoading = false
+            }
         }
+        
+        switch category {
+        case .popular:
+            movieService.getPopularMovie(completion: completion)
+        case .nowPlaying:
+            movieService.getNowPlayingMovie(completion: completion)
+        }
+    }
+    
+    func fetchPopularMovie() {
+        fetchMovies(for: .popular)
+    }
+    
+    func fetchNowPlaying() {
+        fetchMovies(for: .nowPlaying)
     }
     
 }

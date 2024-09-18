@@ -16,6 +16,23 @@ struct MovieModel: Hashable, Identifiable {
     var poster_path: String
     var release_date: String
     var title: String
-    var vote_average: String
+    var vote_average: Double
     var vote_count: Int
+}
+
+extension MovieModel {
+    init(from result: Result) {
+        self.init(
+            id: result.id,
+            original_language: result.originalLanguage,
+            original_title: result.originalTitle,
+            overview: result.overview,
+            popularity: result.popularity,
+            poster_path: "https://image.tmdb.org/t/p/w500\(result.posterPath)",
+            release_date: result.releaseDate,
+            title: result.title,
+            vote_average: result.voteAverage * 0.1,
+            vote_count: result.voteCount
+        )
+    }
 }
