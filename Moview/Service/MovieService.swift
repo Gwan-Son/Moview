@@ -21,6 +21,20 @@ class MovieService {
         fetchMovie(from: "/discover/movie", with: additionalParams, completion: completion)
     }
     
+    func getMovieDetail(id: Int, completion: @escaping (MovieDetailResponse?) -> Void) {
+        fetchMovieDetail(from: String(id), completion: completion)
+    }
+    
+    func getGenreMovie(for genre: String, completion: @escaping (MovieResponse?) -> Void) {
+        let additionalParams = [
+            "include_adult": "false",
+            "include_video": "false",
+            "with_genres": genre
+        ]
+        
+        fetchMovie(from: "/discover/movie", with: additionalParams, completion: completion)
+    }
+    
     func getPopularMovie(completion: @escaping (MovieResponse?) -> Void) {
         fetchMovie(from: "/movie/popular", completion: completion)
     }
@@ -48,6 +62,26 @@ class MovieService {
         
         AF.request(url, method: .get, parameters: params, encoding: URLEncoding.default)
             .responseDecodable(of: MovieResponse.self) { response in
+            switch response.result {
+            case .success(let response):
+                completion(response)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func fetchMovieDetail(from endpoint: String, completion: @escaping (MovieDetailResponse?) -> Void) {
+        let baseURL = "https://api.themoviedb.org/3/movie/"
+        let url = baseURL + endpoint
+        
+        let params: [String: String] = [
+            "api_key": apiKey,
+            "language": "ko-KR"
+        ]
+        
+        AF.request(url, method: .get, parameters: params, encoding: URLEncoding.default)
+            .responseDecodable(of: MovieDetailResponse.self) { response in
             switch response.result {
             case .success(let response):
                 completion(response)
