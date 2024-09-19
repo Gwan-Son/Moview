@@ -8,8 +8,9 @@
 import Foundation
 
 struct MovieModel: Hashable, Identifiable {
+    var backdrop_path: String
     var id: Int
-    var original_language: OriginalLanguage
+    var original_language: String
     var original_title: String
     var overview: String
     var popularity: Double
@@ -23,6 +24,7 @@ struct MovieModel: Hashable, Identifiable {
 extension MovieModel {
     init(from result: Result) {
         self.init(
+            backdrop_path: "https://image.tmdb.org/t/p/original\(result.backdropPath)",
             id: result.id,
             original_language: result.originalLanguage,
             original_title: result.originalTitle,
