@@ -7,26 +7,26 @@
 
 import Foundation
 
-enum Genre: Int, CaseIterable {
-    case action = 28
-    case adventure = 12
-    case animation = 16
-    case comedy = 35
-    case crime = 80
-    case documentary = 99
-    case drama = 18
-    case family = 10751
-    case fantasy = 14
-    case history = 36
-    case horror = 27
-    case music = 10402
-    case mystery = 9648
-    case romance = 10749
-    case scienceFiction = 878
-    case tvMovie = 10770
-    case thriller = 53
-    case war = 10752
-    case western = 37
+enum GenreCode: String, CaseIterable {
+    case action = "28"
+    case adventure = "12"
+    case animation = "16"
+    case comedy = "35"
+    case crime = "80"
+    case documentary = "99"
+    case drama = "18"
+    case family = "10751"
+    case fantasy = "14"
+    case history = "36"
+    case horror = "27"
+    case music = "10402"
+    case mystery = "9648"
+    case romance = "10749"
+    case scienceFiction = "878"
+    case tvMovie = "10770"
+    case thriller = "53"
+    case war = "10752"
+    case western = "37"
     
     var name: String {
         switch self {
@@ -54,7 +54,7 @@ enum Genre: Int, CaseIterable {
 }
 
 struct Genres {
-    static var allGenres: [(String, Int)] {
-        Genre.allCases.map { ($0.name, $0.rawValue) }
+    static var allGenres: [(String, String)] {
+        GenreCode.allCases.map { ($0.name, $0.rawValue) }
     }
 }
