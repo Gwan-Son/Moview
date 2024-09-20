@@ -9,7 +9,8 @@ import SwiftUI
 import Kingfisher
 
 struct MovieView: View {
-    @StateObject var viewModel = MovieViewModel(movieService: MovieService())
+    @StateObject var viewModel = MovieViewModel(movieService: MovieService()
+    )
     var body: some View {
         NavigationView {
             ScrollView(.vertical, showsIndicators: false) {
