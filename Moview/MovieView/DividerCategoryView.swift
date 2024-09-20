@@ -18,14 +18,12 @@ struct DividerCategoryView: View {
             
             Spacer()
             
-            Button {
-                // TODO: - See All Movie List
-                print("모두 보기 클릭!")
-            } label: {
+            NavigationLink(destination: EmptyView()) {
                 Text("모두 보기")
                     .font(.system(size: 13))
                     .foregroundColor(.orange)
             }
+            
         }
         .padding(.horizontal, 15)
         .padding(.top, 10)
