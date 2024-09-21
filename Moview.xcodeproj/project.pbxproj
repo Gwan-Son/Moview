@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9F41C6D92C9D60290048A589 /* SeeAllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F41C6D82C9D60290048A589 /* SeeAllView.swift */; };
 		9F41C6DE2C9D7B520048A589 /* SeeAllViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F41C6DD2C9D7B520048A589 /* SeeAllViewModel.swift */; };
+		9F41C6E22C9E9FEE0048A589 /* MoreButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F41C6E12C9E9FEE0048A589 /* MoreButton.swift */; };
 		9F65EE892C996A88009ADFC7 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F65EE882C996A88009ADFC7 /* CardView.swift */; };
 		9F65EE8B2C998F6F009ADFC7 /* Color+Extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F65EE8A2C998F6F009ADFC7 /* Color+Extenstion.swift */; };
 		9F65EE8E2C9A8B6C009ADFC7 /* Genres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F65EE8D2C9A8B6C009ADFC7 /* Genres.swift */; };
@@ -40,6 +41,7 @@
 		0F6FC62C3F81EE38BDDF5F79 /* Pods_Moview.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Moview.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F41C6D82C9D60290048A589 /* SeeAllView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllView.swift; sourceTree = "<group>"; };
 		9F41C6DD2C9D7B520048A589 /* SeeAllViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllViewModel.swift; sourceTree = "<group>"; };
+		9F41C6E12C9E9FEE0048A589 /* MoreButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreButton.swift; sourceTree = "<group>"; };
 		9F65EE882C996A88009ADFC7 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		9F65EE8A2C998F6F009ADFC7 /* Color+Extenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extenstion.swift"; sourceTree = "<group>"; };
 		9F65EE8D2C9A8B6C009ADFC7 /* Genres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genres.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			children = (
 				9F65EE952C9AA524009ADFC7 /* CircularProgressView.swift */,
 				9F65EE9F2C9BBD4C009ADFC7 /* MoviePosterView.swift */,
+				9F41C6E12C9E9FEE0048A589 /* MoreButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				9FAB1B652C9565FD00413770 /* MovieService.swift in Sources */,
 				9F65EEA22C9BBF7F009ADFC7 /* DetailView.swift in Sources */,
 				9FAF061A2C95550500C009AF /* MoviewApp.swift in Sources */,
+				9F41C6E22C9E9FEE0048A589 /* MoreButton.swift in Sources */,
 				9F65EE9E2C9AB551009ADFC7 /* GenreViewModel.swift in Sources */,
 				9F65EE962C9AA524009ADFC7 /* CircularProgressView.swift in Sources */,
 				9F65EE902C9A93AD009ADFC7 /* DividerCategoryView.swift in Sources */,
