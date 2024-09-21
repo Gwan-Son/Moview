@@ -24,13 +24,13 @@ struct MovieModel: Hashable, Identifiable {
 extension MovieModel {
     init(from result: Result) {
         self.init(
-            backdrop_path: "https://image.tmdb.org/t/p/original\(result.backdropPath)",
+            backdrop_path: "https://image.tmdb.org/t/p/original\(result.backdropPath ?? "")",
             id: result.id,
             original_language: result.originalLanguage,
             original_title: result.originalTitle,
             overview: result.overview,
             popularity: result.popularity,
-            poster_path: "https://image.tmdb.org/t/p/w500\(result.posterPath)",
+            poster_path: "https://image.tmdb.org/t/p/w500\(result.posterPath ?? "")",
             release_date: result.releaseDate,
             title: result.title,
             vote_average: result.voteAverage * 0.1,
