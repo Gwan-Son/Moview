@@ -27,14 +27,14 @@ struct MovieDetailModel: Identifiable {
 extension MovieDetailModel {
     init(from result: MovieDetailResponse) {
         self.init(
-            backdropPath: "https://image.tmdb.org/t/p/original\(result.backdropPath)",
+            backdropPath: "https://image.tmdb.org/t/p/original\(result.backdropPath ?? "")",
             belongsToCollection: result.belongsToCollection ?? BelongsToCollection(id: 0, name: "", posterPath: "", backdropPath: ""),
             genres: result.genres,
             id: result.id,
             originCountry: result.originCountry,
             originalLanguage: result.originalLanguage,
             overview: result.overview,
-            posterPath: "https://image.tmdb.org/t/p/w500\(result.posterPath)",
+            posterPath: "https://image.tmdb.org/t/p/w500\(result.posterPath ?? "")",
             productionCompanies: result.productionCompanies,
             productionCountries: result.productionCountries,
             releaseDate: result.releaseDate,
