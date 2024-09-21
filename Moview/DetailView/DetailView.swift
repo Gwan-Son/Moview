@@ -17,11 +17,22 @@ struct DetailView: View {
         ScrollView(.vertical, showsIndicators: false) {
             ZStack {
                 VStack {
-                    KFImage(URL(string: viewModel.movie?.backdropPath ?? ""))
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: UIScreen.main.bounds.width)
-                        .padding(.top, 1)
+                    if viewModel.movie?.backdropPath == "https://image.tmdb.org/t/p/original" {
+                        Image(systemName: "xmark.circle")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 100)
+                            .padding(.top, 20)
+                        Text("No Image")
+                            .font(.system(size: 20))
+                    } else {
+                        KFImage(URL(string: viewModel.movie?.backdropPath ?? ""))
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: UIScreen.main.bounds.width)
+                            .padding(.top, 1)
+                    }
+                    
                     
                     Spacer()
                 }
@@ -79,7 +90,13 @@ struct DetailView: View {
         }
         .task {
             viewModel.fetchMovie(id: movie.id)
-            
+        }
+        .overlay {
+            if viewModel.isLoading {
+                ProgressView()
+                    .scaleEffect(2)
+                    .progressViewStyle(CircularProgressViewStyle(tint: .blue))
+            }
         }
     }
 }
