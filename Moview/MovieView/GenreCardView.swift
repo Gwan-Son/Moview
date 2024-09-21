@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct GenreCardView: View {
+    @StateObject var viewModel = GenreViewModel(movieService: MovieService())
     let genres = Genres.allGenres
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack {
                 ForEach(genres, id: \.1) { genre in
-                    NavigationLink(destination: GenreView(genre: genre)) {
+                    NavigationLink(destination: GenreView(viewModel: viewModel, genre: genre)) {
                         ZStack {
                             Rectangle()
                                 .frame(width: 100, height: 60)
