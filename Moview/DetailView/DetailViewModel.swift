@@ -9,6 +9,7 @@ import Foundation
 
 class DetailViewModel: ObservableObject {
     @Published var movie: MovieDetailModel?
+    @Published var isLoading: Bool = false
     
     private let movieService: MovieService
     
@@ -17,10 +18,14 @@ class DetailViewModel: ObservableObject {
     }
     
     func fetchMovie(id: Int) {
+        isLoading = true
         movieService.getMovieDetail(id: id) { [weak self] response in
             guard let self = self else { return }
             guard let response = response else { return }
-            self.movie = MovieDetailModel(from: response)
+            DispatchQueue.main.async {
+                self.movie = MovieDetailModel(from: response)
+                self.isLoading = false
+            }
         }
     }
     
