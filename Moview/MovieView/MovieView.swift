@@ -4,15 +4,16 @@
 //
 //  Created by 심관혁 on 9/14/24.
 //
+// TODO: - 로그인, 게시판, 즐겨찾기
 
 import SwiftUI
 import Kingfisher
 
 struct MovieView: View {
-    @StateObject var viewModel = MovieViewModel(movieService: MovieService()
-    )
+    @StateObject var viewModel = MovieViewModel(movieService: MovieService())
+    
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack {
                     // 추천 영화
@@ -20,12 +21,12 @@ struct MovieView: View {
                     
                     GenreCardView()
                     
-                    DividerCategoryView(dividerText: "인기 영화")
+                    DividerCategoryView(category: .popular)
                     
                     MovieSlideView(viewModel: viewModel, type: 0)
                         .padding(.bottom, 10)
                     
-                    DividerCategoryView(dividerText: "현재 상영작")
+                    DividerCategoryView(category: .nowPlaying)
                     
                     MovieSlideView(viewModel: viewModel, type: 1)
                     
@@ -37,6 +38,13 @@ struct MovieView: View {
         .task {
             viewModel.fetchNowPlaying()
             viewModel.fetchPopularMovie()
+        }
+        .overlay {
+            if viewModel.isLoading {
+                ProgressView()
+                    .scaleEffect(2)
+                    .progressViewStyle(CircularProgressViewStyle(tint: .blue))
+            }
         }
     }
     
