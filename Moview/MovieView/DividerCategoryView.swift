@@ -8,17 +8,18 @@
 import SwiftUI
 
 struct DividerCategoryView: View {
-    var dividerText: String
+    @StateObject var viewModel = SeeAllViewModel(movieService: MovieService())
+    var category: MovieCategory
     
     var body: some View {
         HStack {
-            Text(dividerText)
+            Text(category.name)
                 .font(.system(size: 20))
                 .bold()
             
             Spacer()
             
-            NavigationLink(destination: EmptyView()) {
+            NavigationLink(destination: SeeAllView(category: category, viewModel: viewModel)) {
                 Text("모두 보기")
                     .font(.system(size: 13))
                     .foregroundColor(.orange)
@@ -31,5 +32,5 @@ struct DividerCategoryView: View {
 }
 
 #Preview {
-    DividerCategoryView(dividerText: "인기 영화")
+    DividerCategoryView(category: .nowPlaying)
 }
