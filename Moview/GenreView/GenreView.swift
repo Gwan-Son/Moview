@@ -9,11 +9,11 @@ import SwiftUI
 import Kingfisher
 
 struct GenreView: View {
-    @StateObject var viewModel = GenreViewModel(movieService: MovieService())
+    @ObservedObject var viewModel: GenreViewModel
+    @State private var savedMovies: [MovieModel] = []
     var genre: (String, String)
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
-    // TODO: - More Button & Binding Data
     var body: some View {
         ScrollView(.vertical) {
             LazyVGrid(columns: columns) {
@@ -24,10 +24,27 @@ struct GenreView: View {
                     }
                 }
             }
+            MoreButton()
+                .refreshable {
+                    await viewModel.addItem(genre: genre.1)
+                }
         }
         .navigationTitle(genre.0)
         .task {
-            viewModel.fetchGenreMovie(for: genre.1)
+            if savedMovies.isEmpty {
+                viewModel.fetchGenreMovie(with: 0, for: genre.1)
+            }
+        }
+        .disabled(viewModel.isLoading)
+        .overlay {
+            if viewModel.isLoading {
+                ProgressView()
+                    .scaleEffect(2)
+                    .progressViewStyle(CircularProgressViewStyle(tint: .blue))
+            }
+        }
+        .onDisappear {
+            savedMovies = viewModel.genreMovies
         }
     }
 }

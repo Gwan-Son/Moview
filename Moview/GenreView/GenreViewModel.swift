@@ -12,15 +12,16 @@ class GenreViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     
     private let movieService: MovieService
+    var page: Int = 1
     
     init(movieService: MovieService) {
         self.movieService = movieService
     }
     
-    func fetchGenreMovie(for genre: String) {
+    func fetchGenreMovie(with page: Int, for genre: String) {
         isLoading = true
         
-        movieService.getGenreMovie(for: genre) { [weak self] response in
+        movieService.getGenreMovie(with: page, for: genre) { [weak self] response in
             guard let self = self else { return }
             guard let results = response?.results else {
                 DispatchQueue.main.async {
@@ -32,9 +33,18 @@ class GenreViewModel: ObservableObject {
             let movies = results.map { MovieModel(from: $0) }
             
             DispatchQueue.main.async {
-                self.genreMovies = movies
+                if page == 0 {
+                    self.genreMovies = movies
+                } else {
+                    self.genreMovies.append(contentsOf: movies)
+                }
                 self.isLoading = false
             }
         }
+    }
+    
+    func addItem(genre: String) {
+        page += 1
+        fetchGenreMovie(with: page, for: genre)
     }
 }
