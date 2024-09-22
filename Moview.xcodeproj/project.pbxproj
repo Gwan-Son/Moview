@@ -10,6 +10,12 @@
 		9F41C6D92C9D60290048A589 /* SeeAllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F41C6D82C9D60290048A589 /* SeeAllView.swift */; };
 		9F41C6DE2C9D7B520048A589 /* SeeAllViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F41C6DD2C9D7B520048A589 /* SeeAllViewModel.swift */; };
 		9F41C6E22C9E9FEE0048A589 /* MoreButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F41C6E12C9E9FEE0048A589 /* MoreButton.swift */; };
+		9F41C6E42C9EB9150048A589 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9F41C6E32C9EB9150048A589 /* GoogleService-Info.plist */; };
+		9F41C6E72C9EBA5A0048A589 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 9F41C6E62C9EBA5A0048A589 /* FirebaseAuth */; };
+		9F41C6E92C9EBA5A0048A589 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 9F41C6E82C9EBA5A0048A589 /* FirebaseFirestore */; };
+		9F41C6EC2CA006CB0048A589 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F41C6EB2CA006CB0048A589 /* LoginView.swift */; };
+		9F41C6EE2CA006DD0048A589 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F41C6ED2CA006DD0048A589 /* LoginViewModel.swift */; };
+		9F41C6F12CA00CDB0048A589 /* AppleLoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F41C6F02CA00CDB0048A589 /* AppleLoginButton.swift */; };
 		9F65EE892C996A88009ADFC7 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F65EE882C996A88009ADFC7 /* CardView.swift */; };
 		9F65EE8B2C998F6F009ADFC7 /* Color+Extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F65EE8A2C998F6F009ADFC7 /* Color+Extenstion.swift */; };
 		9F65EE8E2C9A8B6C009ADFC7 /* Genres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F65EE8D2C9A8B6C009ADFC7 /* Genres.swift */; };
@@ -42,6 +48,11 @@
 		9F41C6D82C9D60290048A589 /* SeeAllView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllView.swift; sourceTree = "<group>"; };
 		9F41C6DD2C9D7B520048A589 /* SeeAllViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllViewModel.swift; sourceTree = "<group>"; };
 		9F41C6E12C9E9FEE0048A589 /* MoreButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreButton.swift; sourceTree = "<group>"; };
+		9F41C6E32C9EB9150048A589 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9F41C6EB2CA006CB0048A589 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		9F41C6ED2CA006DD0048A589 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		9F41C6EF2CA008830048A589 /* Moview.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Moview.entitlements; sourceTree = "<group>"; };
+		9F41C6F02CA00CDB0048A589 /* AppleLoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginButton.swift; sourceTree = "<group>"; };
 		9F65EE882C996A88009ADFC7 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		9F65EE8A2C998F6F009ADFC7 /* Color+Extenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extenstion.swift"; sourceTree = "<group>"; };
 		9F65EE8D2C9A8B6C009ADFC7 /* Genres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genres.swift; sourceTree = "<group>"; };
@@ -79,6 +90,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B369DDF52CC01E307D37CE2C /* Pods_Moview.framework in Frameworks */,
+				9F41C6E72C9EBA5A0048A589 /* FirebaseAuth in Frameworks */,
+				9F41C6E92C9EBA5A0048A589 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +105,16 @@
 				9F41C6DD2C9D7B520048A589 /* SeeAllViewModel.swift */,
 			);
 			path = SeeAllView;
+			sourceTree = "<group>";
+		};
+		9F41C6EA2CA006B50048A589 /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				9F41C6EB2CA006CB0048A589 /* LoginView.swift */,
+				9F41C6ED2CA006DD0048A589 /* LoginViewModel.swift */,
+				9F41C6F02CA00CDB0048A589 /* AppleLoginButton.swift */,
+			);
+			path = LoginView;
 			sourceTree = "<group>";
 		};
 		9F65EE8C2C998F95009ADFC7 /* Extension */ = {
@@ -187,12 +210,15 @@
 		9FAF06182C95550500C009AF /* Moview */ = {
 			isa = PBXGroup;
 			children = (
+				9F41C6EF2CA008830048A589 /* Moview.entitlements */,
 				9FAB1B702C95809100413770 /* Info.plist */,
+				9F41C6E32C9EB9150048A589 /* GoogleService-Info.plist */,
 				9FAF06192C95550500C009AF /* MoviewApp.swift */,
 				9F65EE8C2C998F95009ADFC7 /* Extension */,
 				9F65EE972C9AACE0009ADFC7 /* Components */,
 				9FAB1B692C95663600413770 /* Model */,
 				9FAB1B682C95662500413770 /* Service */,
+				9F41C6EA2CA006B50048A589 /* LoginView */,
 				9FAB1B6A2C956E0C00413770 /* MovieView */,
 				9F65EE9C2C9AB36C009ADFC7 /* GenreView */,
 				9F65EEA32C9BBF83009ADFC7 /* DetailView */,
@@ -246,6 +272,10 @@
 			dependencies = (
 			);
 			name = Moview;
+			packageProductDependencies = (
+				9F41C6E62C9EBA5A0048A589 /* FirebaseAuth */,
+				9F41C6E82C9EBA5A0048A589 /* FirebaseFirestore */,
+			);
 			productName = Moview;
 			productReference = 9FAF06162C95550500C009AF /* Moview.app */;
 			productType = "com.apple.product-type.application";
@@ -274,6 +304,9 @@
 				Base,
 			);
 			mainGroup = 9FAF060D2C95550500C009AF;
+			packageReferences = (
+				9F41C6E52C9EBA5A0048A589 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 9FAF06172C95550500C009AF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -290,6 +323,7 @@
 			files = (
 				9FAF06212C95550700C009AF /* Preview Assets.xcassets in Resources */,
 				9FAF061E2C95550700C009AF /* Assets.xcassets in Resources */,
+				9F41C6E42C9EB9150048A589 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +376,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F41C6F12CA00CDB0048A589 /* AppleLoginButton.swift in Sources */,
 				9F65EE942C9AA033009ADFC7 /* MovieCategory.swift in Sources */,
 				9F65EE922C9A93D3009ADFC7 /* MovieSlideView.swift in Sources */,
 				9F41C6DE2C9D7B520048A589 /* SeeAllViewModel.swift in Sources */,
@@ -350,8 +385,10 @@
 				9FAB1B6E2C9572B700413770 /* MovieModel.swift in Sources */,
 				9FAF061C2C95550500C009AF /* MovieView.swift in Sources */,
 				9FAB1B6C2C956E1F00413770 /* MovieViewModel.swift in Sources */,
+				9F41C6EE2CA006DD0048A589 /* LoginViewModel.swift in Sources */,
 				9F65EEA52C9BC9FB009ADFC7 /* DetailViewModel.swift in Sources */,
 				9F65EE8B2C998F6F009ADFC7 /* Color+Extenstion.swift in Sources */,
+				9F41C6EC2CA006CB0048A589 /* LoginView.swift in Sources */,
 				9F41C6D92C9D60290048A589 /* SeeAllView.swift in Sources */,
 				9F65EEAB2C9BEA63009ADFC7 /* DetailGenreView.swift in Sources */,
 				9F65EE992C9AB31F009ADFC7 /* GenreCardView.swift in Sources */,
@@ -500,6 +537,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Moview/Moview.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Moview/Preview Content\"";
@@ -519,7 +557,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = kr.gwanson.Moview;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.gwanson.MovieReview;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -533,6 +571,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Moview/Moview.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Moview/Preview Content\"";
@@ -552,7 +591,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = kr.gwanson.Moview;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.gwanson.MovieReview;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -582,6 +621,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9F41C6E52C9EBA5A0048A589 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9F41C6E62C9EBA5A0048A589 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F41C6E52C9EBA5A0048A589 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		9F41C6E82C9EBA5A0048A589 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F41C6E52C9EBA5A0048A589 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9FAF060E2C95550500C009AF /* Project object */;
 }
