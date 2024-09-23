@@ -11,12 +11,31 @@ import FirebaseAuth
 struct LoginView: View {
     @StateObject var viewModel = LoginViewModel()
     
+    let authManager = AuthManager(configuration: .firebase)
+    @Binding var test:Bool
+    
     var body: some View {
         VStack {
             Text("google")
             // TODO: - Apple login with Firebase
             AppleLoginButton()
-
+            
+            Button(action: {
+                Task {
+                    do {
+                        try await authManager.signInApple()
+                        test = true
+                    } catch {
+                        print(error)
+                    }
+                }
+            }, label: {
+                SignInWithAppleButtonView()
+                    .frame(height: 50)
+            })
+            
+            SignInWithGoogleButtonView()
+                .frame(height: 50)
         }
         .frame(height: UIScreen.main.bounds.height)
         .background(.white)
@@ -24,6 +43,5 @@ struct LoginView: View {
 }
 
 #Preview {
-    LoginView()
+    LoginView(test: .constant(false))
 }
-

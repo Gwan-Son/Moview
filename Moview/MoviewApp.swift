@@ -25,7 +25,7 @@ struct MoviewApp: App {
         WindowGroup {
             NavigationView {
 //                MovieView()
-                LoginView()
+                LoginView(test: .constant(false))
             }
         }
     }

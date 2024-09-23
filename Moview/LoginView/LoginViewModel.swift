@@ -12,5 +12,4 @@ import AuthenticationServices
 class LoginViewModel: ObservableObject {
     
     
-    
 }
