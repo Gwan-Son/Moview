@@ -25,7 +25,8 @@ struct MoviewApp: App {
         WindowGroup {
             NavigationView {
 //                MovieView()
-                LoginView(test: .constant(false))
+                LoginView()
+                    .environment(\.auth, AuthManager(configuration: .firebase))
             }
         }
     }
