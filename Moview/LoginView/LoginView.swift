@@ -7,26 +7,59 @@
 
 import SwiftUI
 import FirebaseAuth
+import FirebaseCore
 
 struct LoginView: View {
-    @StateObject var viewModel = LoginViewModel()
     
-    let authManager = AuthManager(configuration: .firebase)
-    @Binding var test:Bool
+    @Environment(\.auth) private var authManager
+    @State private var errorAlert: AnyAppAlert? = nil
+    @State var isLogin: Bool = false
     
     var body: some View {
-        VStack {
-            Text("google")
-            // TODO: - Apple login with Firebase
-            AppleLoginButton()
+        VStack(alignment: .center) {
+            
+            Text("Moview")
+                .font(.system(size: 40))
+                .bold()
+                .padding(.top, 100)
+            
+            Spacer()
+            
+            Button {
+                Task {
+                    do {
+                        let clientId = FirebaseApp.app()?.options.clientID
+                        let (userAuthInfo, isNewUser) = try await authManager.signInGoogle(GIDClientID: clientId!)
+                        if isNewUser {
+                            // New user -> Create user profile in Firestore
+                        } else {
+                            // Existing user -> sign in
+                            print(userAuthInfo)
+                        }
+                    } catch {
+                        // User auth failed
+                        errorAlert = AnyAppAlert(error: error)
+                    }
+                }
+            } label: {
+                SignInWithGoogleButtonView()
+                    .frame(height: 50)
+            }
+            
             
             Button(action: {
                 Task {
                     do {
-                        try await authManager.signInApple()
-                        test = true
+                        let (userAuthInfo, isNewUser) = try await authManager.signInApple()
+                        if isNewUser {
+                            // New user -> Create user profile in Firestore
+                        } else {
+                            // Existing user -> sign in
+                            print(userAuthInfo)
+                        }
                     } catch {
-                        print(error)
+                        // User auth failed
+                        errorAlert = AnyAppAlert(error: error)
                     }
                 }
             }, label: {
@@ -34,14 +67,25 @@ struct LoginView: View {
                     .frame(height: 50)
             })
             
-            SignInWithGoogleButtonView()
-                .frame(height: 50)
+            Button(action: {
+                Task {
+                    do {
+                        try authManager.signOut()
+                    }
+                }
+            }, label: {
+                SignInWithGuestButtonView(foregroundColor: .gray)
+                    .frame(height: 50)
+            })
+            
+            Spacer()
         }
-        .frame(height: UIScreen.main.bounds.height)
-        .background(.white)
+        .padding(.horizontal, 15)
+        .showCustomAlert(alert: $errorAlert)
     }
 }
 
 #Preview {
-    LoginView(test: .constant(false))
+    LoginView()
+        .environment(\.auth, AuthManager(configuration: .mock(.signedIn)))
 }
