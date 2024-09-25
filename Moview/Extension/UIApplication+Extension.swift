@@ -27,8 +27,14 @@ extension UIApplication {
                 .last { $0.isKeyWindow }?
                 .rootViewController
         }
+        // UIApplication.shared.keyWindow?.rootViewController -> iOS 13 error
+        // UIApplication.shared.windows.filter { $0.isKeyWindow }.first?.rootViewController -> iOS 15 error
         
-        return rootVC ?? UIApplication.shared.keyWindow?.rootViewController
+        let scenes = UIApplication.shared.connectedScenes
+        let windowScene = scenes.first as? UIWindowScene
+        let window = windowScene?.windows.first
+        
+        return rootVC ?? window?.windowScene?.keyWindow?.rootViewController
     }
     
     @MainActor static func topViewController(controller: UIViewController? = nil) -> UIViewController? {
