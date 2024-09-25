@@ -12,6 +12,7 @@ import FirebaseCore
 struct LoginView: View {
     
     @Environment(\.auth) private var authManager
+    @Environment(\.db) private var firestoreManager
     @State private var errorAlert: AnyAppAlert? = nil
     @State var isLogin: Bool = false
     
@@ -32,10 +33,9 @@ struct LoginView: View {
                         let (userAuthInfo, isNewUser) = try await authManager.signInGoogle(GIDClientID: clientId!)
                         if isNewUser {
                             // New user -> Create user profile in Firestore
-                        } else {
-                            // Existing user -> sign in
-                            print(userAuthInfo)
+                            firestoreManager.createUserData(userAuthInfo)
                         }
+                        self.isLogin.toggle()
                     } catch {
                         // User auth failed
                         errorAlert = AnyAppAlert(error: error)
@@ -53,10 +53,9 @@ struct LoginView: View {
                         let (userAuthInfo, isNewUser) = try await authManager.signInApple()
                         if isNewUser {
                             // New user -> Create user profile in Firestore
-                        } else {
-                            // Existing user -> sign in
-                            print(userAuthInfo)
+                            firestoreManager.createUserData(userAuthInfo)
                         }
+                        self.isLogin.toggle()
                     } catch {
                         // User auth failed
                         errorAlert = AnyAppAlert(error: error)
@@ -71,21 +70,28 @@ struct LoginView: View {
                 Task {
                     do {
                         try authManager.signOut()
+                        self.isLogin.toggle()
                     }
                 }
             }, label: {
                 SignInWithGuestButtonView(foregroundColor: .gray)
                     .frame(height: 50)
             })
-            
             Spacer()
         }
         .padding(.horizontal, 15)
         .showCustomAlert(alert: $errorAlert)
+        .fullScreenCover(isPresented: $isLogin) {
+            HomeView()
+                .environment(\.db, FirestoreManager())
+        }
     }
+    
+    
 }
 
 #Preview {
     LoginView()
         .environment(\.auth, AuthManager(configuration: .mock(.signedIn)))
+        .environment(\.db, FirestoreManager())
 }
