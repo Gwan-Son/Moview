@@ -27,6 +27,7 @@ struct MoviewApp: App {
 //                MovieView()
                 LoginView()
                     .environment(\.auth, AuthManager(configuration: .firebase))
+                    .environment(\.db, FirestoreManager())
             }
         }
     }

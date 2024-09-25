@@ -26,7 +26,7 @@ struct GenreView: View {
             }
             MoreButton()
                 .refreshable {
-                    await viewModel.addItem(genre: genre.1)
+                    viewModel.addItem(genre: genre.1)
                 }
         }
         .navigationTitle(genre.0)

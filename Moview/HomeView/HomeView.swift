@@ -9,15 +9,18 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel()
+    @Environment(\.db) var firestoreManager: FirestoreManager
     
     var body: some View {
         TabView(selection: $viewModel.selectedTab) {
-            MovieView()
-                .tabItem({
-                    viewModel.selectedTab == .movie ? Image(systemName: "movieclapper.fill") : Image(systemName: "movieclapper")
-                    Text("Movie")
-                })
-                .tag(Tab.movie)
+            NavigationStack {
+                MovieView()
+            }
+            .tabItem({
+                viewModel.selectedTab == .movie ? Image(systemName: "movieclapper.fill") : Image(systemName: "movieclapper")
+                Text("Movies")
+            })
+            .tag(Tab.movie)
             
             Text("Favorite")
                 .tabItem({
@@ -26,17 +29,19 @@ struct HomeView: View {
                 })
                 .tag(Tab.favorite)
             
-            Text("Setting")
+            SettingView()
                 .tabItem({
                     viewModel.selectedTab == .setting ? Image(systemName: "gearshape.fill") : Image(systemName: "gearshape")
                     Text("Setting")
                 })
                 .tag(Tab.setting)
         }
-        .environmentObject(viewModel)
+        .accentColor(.orange)
+        .environment(\.db, FirestoreManager())
     }
 }
 
 #Preview {
     HomeView()
+        .environment(\.db, FirestoreManager())
 }

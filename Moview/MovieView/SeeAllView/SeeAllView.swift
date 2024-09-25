@@ -27,7 +27,7 @@ struct SeeAllView: View {
             }
             MoreButton()
                 .refreshable {
-                    await viewModel.addItem(category: category)
+                    viewModel.addItem(category: category)
                 }
 
         }
