@@ -9,8 +9,9 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel()
-    @Environment(\.db) var firestoreManager: FirestoreManager
+    @EnvironmentObject var firestoreManager: FirestoreManager
     @Environment(\.auth) private var authManager
+    @Binding var isPresented: Bool
     
     var body: some View {
         TabView(selection: $viewModel.selectedTab) {
@@ -30,7 +31,7 @@ struct HomeView: View {
                 })
                 .tag(Tab.favorite)
             
-            SettingView()
+            SettingView(isPresented: $isPresented)
                 .tabItem({
                     viewModel.selectedTab == .setting ? Image(systemName: "gearshape.fill") : Image(systemName: "gearshape")
                     Text("Setting")
@@ -38,12 +39,13 @@ struct HomeView: View {
                 .tag(Tab.setting)
         }
         .accentColor(.orange)
-        .environment(\.db, FirestoreManager())
+        .environmentObject(firestoreManager)
+//        .environment(\.auth, AuthManager(configuration: .firebase))
     }
 }
 
 #Preview {
-    HomeView()
+    HomeView(isPresented: .constant(true))
         .environment(\.db, FirestoreManager())
         .environment(\.auth, AuthManager(configuration: .mock(.signedIn)))
 }
