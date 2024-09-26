@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct SettingView: View {
-    @Environment(\.db) private var firestoreManager: FirestoreManager
+    @EnvironmentObject private var firestoreManager: FirestoreManager
     @Environment(\.auth) private var authManager
+    @StateObject var viewModel: SettingViewModel = SettingViewModel()
+    @Binding var isPresented: Bool
+    @State var isLogoutAlertPresented: Bool = false
     
     var body: some View {
         NavigationView {
@@ -17,7 +20,8 @@ struct SettingView: View {
                 Group {
                     HStack {
                         Spacer()
-                        ProfileView(displayName: "name", email: "email")
+                        ProfileView(displayName: viewModel.displayName, email: viewModel.email)
+                            .environment(\.db, FirestoreManager())
                         Spacer()
                     }
                 }
@@ -45,9 +49,19 @@ struct SettingView: View {
                     HStack {
                         Image(systemName: "rectangle.portrait.and.arrow.right")
                         Button {
-                            // TODO: - SignOut
+                            self.isLogoutAlertPresented.toggle()
                         } label: {
                             Text("로그아웃")
+                                .alert(isPresented: $isLogoutAlertPresented) {
+                                    Alert(title: Text("로그아웃"), message: Text("로그아웃하시겠습니까?"), primaryButton: .destructive(Text("확인"), action: {
+                                        Task {
+                                            do {
+                                                try authManager.signOut()
+                                                isPresented.toggle()
+                                            }
+                                        }
+                                    }), secondaryButton: .cancel(Text("취소")))
+                                }
                         }
                     }
                     HStack {
@@ -62,13 +76,19 @@ struct SettingView: View {
                 }
             }
             .navigationTitle("설정")
+            .onAppear {
+                if let uid = authManager.currentUser.userId {
+                    let data = firestoreManager.loadDisplayName(uid)
+                    viewModel.loadProfile(name: data.0, email: data.1)
+                }
+            }
         }
         
     }
 }
 
 #Preview {
-    SettingView()
+    SettingView(isPresented: .constant(true))
         .environment(\.db, FirestoreManager())
         .environment(\.auth, AuthManager(configuration: .mock(.signedIn)))
 }
