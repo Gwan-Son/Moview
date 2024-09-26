@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel()
     @Environment(\.db) var firestoreManager: FirestoreManager
+    @Environment(\.auth) private var authManager
     
     var body: some View {
         TabView(selection: $viewModel.selectedTab) {
@@ -44,4 +45,5 @@ struct HomeView: View {
 #Preview {
     HomeView()
         .environment(\.db, FirestoreManager())
+        .environment(\.auth, AuthManager(configuration: .mock(.signedIn)))
 }
