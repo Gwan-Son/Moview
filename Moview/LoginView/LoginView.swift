@@ -10,9 +10,9 @@ import FirebaseAuth
 import FirebaseCore
 
 struct LoginView: View {
-    
+    // EnvironmentObject로 선언
     @Environment(\.auth) private var authManager
-    @Environment(\.db) private var firestoreManager
+    @StateObject private var firestoreManager = FirestoreManager()
     @State private var errorAlert: AnyAppAlert? = nil
     @State var isLogin: Bool = false
     
@@ -82,8 +82,8 @@ struct LoginView: View {
         .padding(.horizontal, 15)
         .showCustomAlert(alert: $errorAlert)
         .fullScreenCover(isPresented: $isLogin) {
-            HomeView()
-                .environment(\.db, FirestoreManager())
+            HomeView(isPresented: $isLogin)
+                .environmentObject(firestoreManager)
         }
     }
     
