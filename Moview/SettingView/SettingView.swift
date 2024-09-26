@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct SettingView: View {
-    @Environment(\.db) var firestoreManager: FirestoreManager
+    @Environment(\.db) private var firestoreManager: FirestoreManager
+    @Environment(\.auth) private var authManager
     
     var body: some View {
         NavigationView {
@@ -69,5 +70,6 @@ struct SettingView: View {
 #Preview {
     SettingView()
         .environment(\.db, FirestoreManager())
+        .environment(\.auth, AuthManager(configuration: .mock(.signedIn)))
 }
 
