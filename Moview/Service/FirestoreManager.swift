@@ -10,7 +10,7 @@ import FirebaseFirestore
 import FirebaseCore
 
 // TODO: - DB 데이터 생성 메서드 및 삭제 메서드, 유저 데이터 메서드, 게시판 기능
-public final class FirestoreManager {
+public final class FirestoreManager: ObservableObject {
     @Published var db: Firestore
     
     init() {
@@ -27,6 +27,25 @@ public final class FirestoreManager {
             "displayName": displayName
         ]
         db.collection("users").document(userInfo.uid).setData(data)
+    }
+    
+    func updateUserData(_ uid: String, updateName: String) {
+        db.collection("users").document(uid).updateData(["displayName": updateName])
+    }
+    
+    func loadDisplayName(_ uid: String) -> (String, String) {
+        var returnName: String = ""
+        var returnEmail: String = ""
+        db.collection("users").document(uid).getDocument { (snapshot, error) in
+            if error == nil && snapshot != nil && snapshot!.data() != nil {
+                let data = snapshot!.data()!
+                let displayName = data["displayName"]!
+                let email = data["email"]!
+//                returnName = displayName as! String
+//                returnEmail = email as! String
+            }
+        }
+        return (returnName, returnEmail)
     }
     
     func deleteUserData(_ uid: String) {
