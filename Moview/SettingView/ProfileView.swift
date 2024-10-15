@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @Environment(\.db) private var firestoreManager: FirestoreManager
+    @EnvironmentObject private var firestoreManager: FirestoreManager
     @Environment(\.auth) private var authManager
     @State var isPresented: Bool = false
     @State var changeDisplayName: String = ""
-    @State var displayName: String
-    let email: String
+    @Binding var displayName: String
+    @Binding var email: String
+    
+    var onDisplayNameChanged: ((String) -> Void)?
     
     var body: some View {
         VStack {
@@ -43,10 +45,11 @@ struct ProfileView: View {
                     .overlay(RoundedRectangle(cornerRadius: 25).stroke(.white, lineWidth: 2))
                     .alert("닉네임 변경", isPresented: $isPresented) {
                         TextField(displayName, text: $changeDisplayName)
+                            .autocorrectionDisabled(true)
                         Button("확인", action: {
                             if displayName != changeDisplayName {
-                                firestoreManager.updateUserData(authManager.currentUser.userId!, updateName: changeDisplayName)
                                 self.displayName = changeDisplayName
+                                onDisplayNameChanged?(changeDisplayName)
                             }
                         })
                         Button("취소", role: .cancel, action: {})
@@ -64,7 +67,7 @@ struct ProfileView: View {
 
 
 #Preview {
-    ProfileView(displayName: "이름", email: "이메일")
-        .environment(\.db, FirestoreManager())
+    ProfileView(displayName: .constant("이름"), email: .constant("이메일"))
+        .environmentObject(FirestoreManager())
         .environment(\.auth, AuthManager(configuration: .mock(.signedIn)))
 }
