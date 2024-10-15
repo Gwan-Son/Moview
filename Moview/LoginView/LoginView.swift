@@ -10,9 +10,8 @@ import FirebaseAuth
 import FirebaseCore
 
 struct LoginView: View {
-    // EnvironmentObject로 선언
     @Environment(\.auth) private var authManager
-    @StateObject private var firestoreManager = FirestoreManager()
+    @EnvironmentObject private var firestoreManager: FirestoreManager
     @State private var errorAlert: AnyAppAlert? = nil
     @State var isLogin: Bool = false
     
@@ -53,6 +52,7 @@ struct LoginView: View {
                         let (userAuthInfo, isNewUser) = try await authManager.signInApple()
                         if isNewUser {
                             // New user -> Create user profile in Firestore
+                            print(userAuthInfo)
                             firestoreManager.createUserData(userAuthInfo)
                         }
                         self.isLogin.toggle()
@@ -82,8 +82,8 @@ struct LoginView: View {
         .padding(.horizontal, 15)
         .showCustomAlert(alert: $errorAlert)
         .fullScreenCover(isPresented: $isLogin) {
-            HomeView(isPresented: $isLogin)
-                .environmentObject(firestoreManager)
+            HomeView()
+                .environment(\.isLoggedIn, $isLogin)
         }
     }
     
@@ -93,5 +93,5 @@ struct LoginView: View {
 #Preview {
     LoginView()
         .environment(\.auth, AuthManager(configuration: .mock(.signedIn)))
-        .environment(\.db, FirestoreManager())
+        .environmentObject(FirestoreManager())
 }
