@@ -10,6 +10,7 @@ import Foundation
 class DetailViewModel: ObservableObject {
     @Published var movie: MovieDetailModel?
     @Published var isLoading: Bool = false
+    @Published var isFavorite: Bool = false
     
     private let movieService: MovieService
     
@@ -27,6 +28,10 @@ class DetailViewModel: ObservableObject {
                 self.isLoading = false
             }
         }
+    }
+    
+    func fetchFavorite(isFavorite: Bool) {
+        self.isFavorite = isFavorite
     }
     
     func changeTime(runtime: Int) -> String {
