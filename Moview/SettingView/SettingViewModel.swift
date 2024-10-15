@@ -17,4 +17,11 @@ class SettingViewModel: ObservableObject {
             self.email = email!
         }
     }
+    
+    func resetProfile() {
+        print("reset 실행!")
+        self.displayName = "Guest"
+        self.email = "example@example.com"
+        print(displayName,email)
+    }
 }
