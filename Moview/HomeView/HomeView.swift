@@ -11,7 +11,7 @@ struct HomeView: View {
     @StateObject private var viewModel = HomeViewModel()
     @EnvironmentObject var firestoreManager: FirestoreManager
     @Environment(\.auth) private var authManager
-    @Binding var isPresented: Bool
+    @Environment(\.isLoggedIn) var isLoggedIn
     
     var body: some View {
         TabView(selection: $viewModel.selectedTab) {
@@ -24,14 +24,15 @@ struct HomeView: View {
             })
             .tag(Tab.movie)
             
-            Text("Favorite")
+            FavoriteView()
                 .tabItem({
                     viewModel.selectedTab == .favorite ? Image(systemName: "star.fill") : Image(systemName: "star")
                     Text("Favorite")
                 })
                 .tag(Tab.favorite)
             
-            SettingView(isPresented: $isPresented)
+            SettingView()
+                .environment(\.isLoggedIn, isLoggedIn)
                 .tabItem({
                     viewModel.selectedTab == .setting ? Image(systemName: "gearshape.fill") : Image(systemName: "gearshape")
                     Text("Setting")
@@ -39,13 +40,16 @@ struct HomeView: View {
                 .tag(Tab.setting)
         }
         .accentColor(.orange)
-        .environmentObject(firestoreManager)
-//        .environment(\.auth, AuthManager(configuration: .firebase))
+        .onAppear {
+            if let uid = authManager.currentUser.userId {
+                firestoreManager.loadUserData(uid)
+            }
+        }
     }
 }
 
 #Preview {
-    HomeView(isPresented: .constant(true))
-        .environment(\.db, FirestoreManager())
+    HomeView()
+        .environmentObject(FirestoreManager())
         .environment(\.auth, AuthManager(configuration: .mock(.signedIn)))
 }
