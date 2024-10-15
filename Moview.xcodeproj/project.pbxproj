@@ -15,6 +15,7 @@
 		9F0E89822CA3E78400A06979 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0E89812CA3E78400A06979 /* SettingView.swift */; };
 		9F0E89852CA3FBA600A06979 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0E89842CA3FBA600A06979 /* ProfileView.swift */; };
 		9F0E89872CA5CF1100A06979 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0E89862CA5CF1100A06979 /* SettingViewModel.swift */; };
+		9F0E89892CA6AC1800A06979 /* IsLoggedInEnvironmentKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0E89882CA6AC1800A06979 /* IsLoggedInEnvironmentKey.swift */; };
 		9F41C6D92C9D60290048A589 /* SeeAllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F41C6D82C9D60290048A589 /* SeeAllView.swift */; };
 		9F41C6DE2C9D7B520048A589 /* SeeAllViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F41C6DD2C9D7B520048A589 /* SeeAllViewModel.swift */; };
 		9F41C6E22C9E9FEE0048A589 /* MoreButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F41C6E12C9E9FEE0048A589 /* MoreButton.swift */; };
@@ -48,6 +49,7 @@
 		9FAF061C2C95550500C009AF /* MovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAF061B2C95550500C009AF /* MovieView.swift */; };
 		9FAF061E2C95550700C009AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FAF061D2C95550700C009AF /* Assets.xcassets */; };
 		9FAF06212C95550700C009AF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FAF06202C95550700C009AF /* Preview Assets.xcassets */; };
+		9FAFFD9E2CBDF8C900F20ED3 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAFFD9D2CBDF8C900F20ED3 /* FavoriteView.swift */; };
 		9FEA06CF2CA129E20020A600 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA06CE2CA129E20020A600 /* UIApplication+Extension.swift */; };
 		9FEA06D12CA129F90020A600 /* ASAuthorizationAppleIDButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA06D02CA129F90020A600 /* ASAuthorizationAppleIDButton+Extension.swift */; };
 		9FEA06D32CA12A0D0020A600 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA06D22CA12A0D0020A600 /* AuthManager.swift */; };
@@ -73,6 +75,7 @@
 		9F0E89812CA3E78400A06979 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		9F0E89842CA3FBA600A06979 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		9F0E89862CA5CF1100A06979 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		9F0E89882CA6AC1800A06979 /* IsLoggedInEnvironmentKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsLoggedInEnvironmentKey.swift; sourceTree = "<group>"; };
 		9F41C6D82C9D60290048A589 /* SeeAllView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllView.swift; sourceTree = "<group>"; };
 		9F41C6DD2C9D7B520048A589 /* SeeAllViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllViewModel.swift; sourceTree = "<group>"; };
 		9F41C6E12C9E9FEE0048A589 /* MoreButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreButton.swift; sourceTree = "<group>"; };
@@ -108,6 +111,7 @@
 		9FAF061B2C95550500C009AF /* MovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieView.swift; sourceTree = "<group>"; };
 		9FAF061D2C95550700C009AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9FAF06202C95550700C009AF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		9FAFFD9D2CBDF8C900F20ED3 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
 		9FEA06CE2CA129E20020A600 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		9FEA06D02CA129F90020A600 /* ASAuthorizationAppleIDButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ASAuthorizationAppleIDButton+Extension.swift"; sourceTree = "<group>"; };
 		9FEA06D22CA12A0D0020A600 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
@@ -230,6 +234,7 @@
 			children = (
 				9FAB1B642C9565FD00413770 /* MovieService.swift */,
 				9F0E897D2CA2B1D000A06979 /* FirestoreManager.swift */,
+				9F0E89882CA6AC1800A06979 /* IsLoggedInEnvironmentKey.swift */,
 				9FEA06D42CA12A2D0020A600 /* Auth */,
 			);
 			path = Service;
@@ -297,6 +302,7 @@
 				9FAB1B6A2C956E0C00413770 /* MovieView */,
 				9F65EE9C2C9AB36C009ADFC7 /* GenreView */,
 				9F65EEA32C9BBF83009ADFC7 /* DetailView */,
+				9FAFFD9F2CBDF8CE00F20ED3 /* FavoriteView */,
 				9F0E89832CA3E78800A06979 /* SettingView */,
 				9FAF061D2C95550700C009AF /* Assets.xcassets */,
 				9FAF061F2C95550700C009AF /* Preview Content */,
@@ -311,6 +317,14 @@
 				9FAF06202C95550700C009AF /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		9FAFFD9F2CBDF8CE00F20ED3 /* FavoriteView */ = {
+			isa = PBXGroup;
+			children = (
+				9FAFFD9D2CBDF8C900F20ED3 /* FavoriteView.swift */,
+			);
+			path = FavoriteView;
 			sourceTree = "<group>";
 		};
 		9FEA06D42CA12A2D0020A600 /* Auth */ = {
@@ -484,6 +498,7 @@
 				9F65EE8E2C9A8B6C009ADFC7 /* Genres.swift in Sources */,
 				9F65EE892C996A88009ADFC7 /* CardView.swift in Sources */,
 				9FAB1B6E2C9572B700413770 /* MovieModel.swift in Sources */,
+				9F0E89892CA6AC1800A06979 /* IsLoggedInEnvironmentKey.swift in Sources */,
 				9FAF061C2C95550500C009AF /* MovieView.swift in Sources */,
 				9FEA06DF2CA12AA40020A600 /* SignInWithApple.swift in Sources */,
 				9FAB1B6C2C956E1F00413770 /* MovieViewModel.swift in Sources */,
@@ -516,6 +531,7 @@
 				9F65EE902C9A93AD009ADFC7 /* DividerCategoryView.swift in Sources */,
 				9FEA06DA2CA12A5C0020A600 /* FirebaseAuthProvider.swift in Sources */,
 				9F0E89852CA3FBA600A06979 /* ProfileView.swift in Sources */,
+				9FAFFD9E2CBDF8C900F20ED3 /* FavoriteView.swift in Sources */,
 				9FEA06D62CA12A3E0020A600 /* AuthManagerEnvironmentKey.swift in Sources */,
 				9FEA06D82CA12A4F0020A600 /* AuthProvider.swift in Sources */,
 				9FAD60B12CA1488400A54209 /* SignInWithGuestButtonView.swift in Sources */,

@@ -9,6 +9,8 @@ import SwiftUI
 import Kingfisher
 
 struct DetailView: View {
+    @EnvironmentObject private var firestoreManager: FirestoreManager
+    @Environment(\.auth) private var authManager
     @StateObject var viewModel = DetailViewModel(movieService: MovieService())
     
     var movie: MovieModel
@@ -79,6 +81,8 @@ struct DetailView: View {
                         Spacer()
                     }
                     .padding(.horizontal, 10)
+                    
+                    
                 }
                 .background(.white)
                 .cornerRadius(10)
@@ -88,8 +92,18 @@ struct DetailView: View {
             }
             
         }
+        .toolbar {
+            Button {
+                firestoreManager.updateFavorite(authManager.currentUser.userId!, id: viewModel.movie!.id, title: viewModel.movie!.title, poster_path: viewModel.movie!.posterPath, vote_average: viewModel.movie!.voteAverage)
+                viewModel.isFavorite.toggle()
+            } label: {
+                viewModel.isFavorite ? Image(systemName: "star.fill") :    Image(systemName: "star")
+            }
+            .disabled(authManager.currentUser.userId == nil)
+        }
         .task {
             viewModel.fetchMovie(id: movie.id)
+            viewModel.fetchFavorite(isFavorite: firestoreManager.userData.movies.contains(where: { $0.id == movie.id }))
         }
         .overlay {
             if viewModel.isLoading {
