@@ -7,6 +7,13 @@
 
 import Foundation
 
+struct UserMovieModel: Codable {
+    var id: Int
+    var title: String
+    var poster_path: String
+    var vote_average: Double
+}
+
 struct MovieModel: Hashable, Identifiable {
     var backdrop_path: String
     var id: Int
