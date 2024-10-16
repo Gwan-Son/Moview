@@ -13,9 +13,9 @@ struct UserData: Codable, Identifiable {
     @DocumentID var id: String?
     let displayName: String
     let email: String
-    let movies: [UserMovieModel]
+    let movies: [Int]
     
-    init(id: String? = nil, displayName: String, email: String, movies: [UserMovieModel] = []) {
+    init(id: String? = nil, displayName: String, email: String, movies: [Int] = []) {
         self.id = id
         self.displayName = displayName
         self.email = email
@@ -76,50 +76,76 @@ public final class FirestoreManager: ObservableObject {
     }
     
     func deleteUserData(_ uid: String) {
+        deleteFavorite(uid)
         db.collection("users").document(uid).delete()
     }
     
-    // 파이어스토어에 데이터 저장할 때 오류 발생 -> 문제점: 컬렉션 내에 필드를 생성하여 만들어야하는데 swift 내에서 별도의 struct를 생성하여 데이터타입 불일치.
     func updateFavorite(_ uid: String, id: Int, title: String, poster_path: String, vote_average: Double) {
-        let movie = UserMovieModel(id: id, title: title, poster_path: poster_path, vote_average: vote_average)
+        let movie: [String: Any] = [
+            "title": title,
+            "poster_path": poster_path,
+            "vote_average": vote_average
+        ]
+        let data = db.collection("users").document(uid).collection("favorites").document(String(id))
         
+        data.getDocument { (document, error) in
+            if let document = document, document.exists {
+                data.delete()
+            } else {
+                data.setData(movie)
+            }
+        }
+        updateUserMovie(uid, updateMovie: id)
+    }
+    
+    func updateUserMovie(_ uid: String, updateMovie: Int) {
         let data = db.collection("users").document(uid)
         
         data.getDocument { (document, error) in
             if let document = document, document.exists {
-                let dataDescription = document.data()!["movies"] as! [UserMovieModel]
-                if dataDescription.contains(where: { $0.id == id }) {
-                    self.db.collection("users").document(uid).updateData(["movies": FieldValue.arrayRemove([movie])])
+                let dataDescription = document.data()!["movies"] as! [Int]
+                if dataDescription.contains(updateMovie) {
+                    self.db.collection("users").document(uid).updateData(["movies": FieldValue.arrayRemove([updateMovie])])
                 } else {
-                    self.db.collection("users").document(uid).updateData(["movies": FieldValue.arrayUnion([movie])])
+                    self.db.collection("users").document(uid).updateData(["movies": FieldValue.arrayUnion([updateMovie])])
                 }
             } else {
-                self.db.collection("users").document(uid).updateData(["movies": [movie]])
+                self.db.collection("users").document(uid).updateData(["movies": [updateMovie]])
             }
         }
     }
     
-//    func updateFavorite(_ uid: String, updateMovie: Int) {
-//        let data = db.collection("users").document(uid)
-//        
-//        data.getDocument { (document, error) in
-//            if let document = document, document.exists {
-//                let dataDescription = document.data()!["movies"] as! [Int]
-//                if dataDescription.contains(updateMovie) {
-//                    self.db.collection("users").document(uid).updateData(["movies": FieldValue.arrayRemove([updateMovie])])
-//                } else {
-//                    self.db.collection("users").document(uid).updateData(["movies": FieldValue.arrayUnion([updateMovie])])
-//                }
-//            } else {
-//                self.db.collection("users").document(uid).updateData(["movies": [updateMovie]])
-//            }
-//        }
-//    }
     
-    
-    func deleteFavorite(_ uid: String) {
-        db.collection("users").document(uid).updateData(["movies": []])
+    func deleteFavorite(_ uid: String, completion: @escaping () -> Void) {
+        let favorite = db.collection("users").document(uid).collection("favorites")
+        db.collection("users").document(uid).getDocument { (document, error) in
+            if let document = document, document.exists {
+                let movies = document.data()!["movies"] as! [Int]
+                var count = 0
+                for movie in movies {
+                    favorite.document(String(movie)).delete { error in
+                        if let error = error {
+                            print("Error deleting document: \(error)")
+                        } else {
+                            count += 1
+                            if count == movies.count {
+                                completion()
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     
+    func deleteFavorite(_ uid: String) {
+        deleteFavorite(uid) {
+            self.deleteMovies(uid)
+        }
+    }
+    
+    func deleteMovies(_ uid: String) {
+        db.collection("users").document(uid).updateData(["movies": []])
+    }
     
 }
