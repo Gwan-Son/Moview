@@ -103,7 +103,7 @@ struct DetailView: View {
         }
         .task {
             viewModel.fetchMovie(id: movie.id)
-            viewModel.fetchFavorite(isFavorite: firestoreManager.userData.movies.contains(where: { $0.id == movie.id }))
+            viewModel.fetchFavorite(isFavorite: firestoreManager.userData.movies.contains(where: { $0 == movie.id }))
         }
         .overlay {
             if viewModel.isLoading {
