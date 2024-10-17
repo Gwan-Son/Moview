@@ -10,9 +10,25 @@ import SwiftUI
 struct FavoriteView: View {
     @EnvironmentObject private var firestoreManager: FirestoreManager
     @Environment(\.auth) private var authManager
+    @StateObject var viewModel = FavoriteViewModel()
+    
+    let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        // TODO: - UniqueID 중복 발생
+        ScrollView {
+            LazyVGrid(columns: columns) {
+                ForEach(viewModel.movies, id: \.id) { favorite in
+                    NavigationLink(destination: DetailView(movie: favorite)) {
+                        MoviePosterView(movie: favorite)
+                            .foregroundColor(.black)
+                    }
+                }
+            }
+        }
+        .task {
+            viewModel.loadFavorite(firestoreManager.favorites)
+        }
     }
 }
 
