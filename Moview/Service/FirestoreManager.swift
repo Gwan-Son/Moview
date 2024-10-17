@@ -23,11 +23,25 @@ struct UserData: Codable, Identifiable {
     }
 }
 
+struct UserFavorite: Codable, Hashable, Identifiable {
+    @DocumentID var id: String?
+    let title: String
+    let poster_path: String
+    let vote_average: Double
+    
+    init(id: String? = nil, title: String, poster_path: String, vote_average: Double) {
+        self.id = id
+        self.title = title
+        self.poster_path = poster_path
+        self.vote_average = vote_average
+    }
+}
+
 public final class FirestoreManager: ObservableObject {
     let db = Firestore.firestore()
     
-    @Published var favorites: [String] = []
     @Published var userData: UserData = UserData(id: nil, displayName: "Guest", email: "example@example.com")
+    @Published var favorites: [UserFavorite] = []
     
     func resetUserData() {
         DispatchQueue.main.async {
@@ -78,6 +92,26 @@ public final class FirestoreManager: ObservableObject {
     func deleteUserData(_ uid: String) {
         deleteFavorite(uid)
         db.collection("users").document(uid).delete()
+    }
+    
+    func loadUserFavorites(_ uid: String) {
+        let favorite = db.collection("users").document(uid).collection("favorites")
+        db.collection("users").document(uid).getDocument { (document, error) in
+            if let document = document, document.exists {
+                let movies = document.data()!["movies"] as! [Int]
+                for movie in movies {
+                    favorite.document(String(movie)).getDocument { (document,error) in
+                        if let document = document, document.exists {
+                            let data = document.data()!
+                            let title = data["title"] as! String
+                            let poster_path = data["poster_path"] as! String
+                            let vote_average = data["vote_average"] as! Double
+                            self.favorites.append(UserFavorite(id: String(movie), title: title, poster_path: poster_path, vote_average: vote_average))
+                        }
+                    }
+                }
+            }
+        }
     }
     
     func updateFavorite(_ uid: String, id: Int, title: String, poster_path: String, vote_average: Double) {
