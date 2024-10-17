@@ -43,6 +43,7 @@ struct HomeView: View {
         .onAppear {
             if let uid = authManager.currentUser.userId {
                 firestoreManager.loadUserData(uid)
+                firestoreManager.loadUserFavorites(uid)
             }
         }
     }
