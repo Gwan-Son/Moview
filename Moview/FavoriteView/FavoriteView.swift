@@ -15,7 +15,6 @@ struct FavoriteView: View {
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
-        // TODO: - UniqueID 중복 발생
         ScrollView {
             LazyVGrid(columns: columns) {
                 ForEach(viewModel.movies, id: \.id) { favorite in
