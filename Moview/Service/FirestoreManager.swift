@@ -96,6 +96,7 @@ public final class FirestoreManager: ObservableObject {
     
     func loadUserFavorites(_ uid: String) {
         let favorite = db.collection("users").document(uid).collection("favorites")
+        self.favorites.removeAll()
         db.collection("users").document(uid).getDocument { (document, error) in
             if let document = document, document.exists {
                 let movies = document.data()!["movies"] as! [Int]
