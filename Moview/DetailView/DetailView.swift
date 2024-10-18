@@ -105,6 +105,14 @@ struct DetailView: View {
             viewModel.fetchMovie(id: movie.id)
             viewModel.fetchFavorite(isFavorite: firestoreManager.userData.movies.contains(where: { $0 == movie.id }))
         }
+        .onDisappear {
+            if authManager.currentUser.userId == nil {
+                return
+            } else {
+                firestoreManager.loadUserData(authManager.currentUser.userId!)
+                firestoreManager.loadUserFavorites(authManager.currentUser.userId!)                
+            }
+        }
         .overlay {
             if viewModel.isLoading {
                 ProgressView()
