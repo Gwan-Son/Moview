@@ -17,69 +17,71 @@ struct LoginView: View {
     
     var body: some View {
         VStack(alignment: .center) {
-            
-            Text("Moview")
-                .font(.system(size: 40))
-                .bold()
+            LogoView()
                 .padding(.top, 100)
             
             Spacer()
             
-            Button {
-                Task {
-                    do {
-                        let clientId = FirebaseApp.app()?.options.clientID
-                        let (userAuthInfo, isNewUser) = try await authManager.signInGoogle(GIDClientID: clientId!)
-                        if isNewUser {
-                            // New user -> Create user profile in Firestore
-                            firestoreManager.createUserData(userAuthInfo)
+            
+            VStack {
+                Button {
+                    Task {
+                        do {
+                            let clientId = FirebaseApp.app()?.options.clientID
+                            let (userAuthInfo, isNewUser) = try await authManager.signInGoogle(GIDClientID: clientId!)
+                            if isNewUser {
+                                // New user -> Create user profile in Firestore
+                                firestoreManager.createUserData(userAuthInfo)
+                            }
+                            self.isLogin.toggle()
+                        } catch {
+                            // User auth failed
+                            errorAlert = AnyAppAlert(error: error)
                         }
-                        self.isLogin.toggle()
-                    } catch {
-                        // User auth failed
-                        errorAlert = AnyAppAlert(error: error)
                     }
+                } label: {
+                    SignInWithGoogleButtonView()
+                        .frame(height: 50)
                 }
-            } label: {
-                SignInWithGoogleButtonView()
-                    .frame(height: 50)
+                
+                
+                Button(action: {
+                    Task {
+                        do {
+                            let (userAuthInfo, isNewUser) = try await authManager.signInApple()
+                            if isNewUser {
+                                // New user -> Create user profile in Firestore
+                                print(userAuthInfo)
+                                firestoreManager.createUserData(userAuthInfo)
+                            }
+                            self.isLogin.toggle()
+                        } catch {
+                            // User auth failed
+                            errorAlert = AnyAppAlert(error: error)
+                        }
+                    }
+                }, label: {
+                    SignInWithAppleButtonView()
+                        .frame(height: 50)
+                })
+                
+                Button(action: {
+                    Task {
+                        do {
+                            try authManager.signOut()
+                            self.isLogin.toggle()
+                        }
+                    }
+                }, label: {
+                    SignInWithGuestButtonView(foregroundColor: .gray)
+                        .frame(height: 50)
+                })
             }
-            
-            
-            Button(action: {
-                Task {
-                    do {
-                        let (userAuthInfo, isNewUser) = try await authManager.signInApple()
-                        if isNewUser {
-                            // New user -> Create user profile in Firestore
-                            print(userAuthInfo)
-                            firestoreManager.createUserData(userAuthInfo)
-                        }
-                        self.isLogin.toggle()
-                    } catch {
-                        // User auth failed
-                        errorAlert = AnyAppAlert(error: error)
-                    }
-                }
-            }, label: {
-                SignInWithAppleButtonView()
-                    .frame(height: 50)
-            })
-            
-            Button(action: {
-                Task {
-                    do {
-                        try authManager.signOut()
-                        self.isLogin.toggle()
-                    }
-                }
-            }, label: {
-                SignInWithGuestButtonView(foregroundColor: .gray)
-                    .frame(height: 50)
-            })
             Spacer()
+                .frame(height: 50)
         }
         .padding(.horizontal, 15)
+        .background(.orange.opacity(0.7))
         .showCustomAlert(alert: $errorAlert)
         .fullScreenCover(isPresented: $isLogin) {
             HomeView()

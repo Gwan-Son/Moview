@@ -51,6 +51,7 @@
 		9FAF06212C95550700C009AF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FAF06202C95550700C009AF /* Preview Assets.xcassets */; };
 		9FAFFD9E2CBDF8C900F20ED3 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAFFD9D2CBDF8C900F20ED3 /* FavoriteView.swift */; };
 		9FAFFDA12CC1076100F20ED3 /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAFFDA02CC1076100F20ED3 /* FavoriteViewModel.swift */; };
+		9FAFFDA32CC2A35900F20ED3 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAFFDA22CC2A35900F20ED3 /* LogoView.swift */; };
 		9FEA06CF2CA129E20020A600 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA06CE2CA129E20020A600 /* UIApplication+Extension.swift */; };
 		9FEA06D12CA129F90020A600 /* ASAuthorizationAppleIDButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA06D02CA129F90020A600 /* ASAuthorizationAppleIDButton+Extension.swift */; };
 		9FEA06D32CA12A0D0020A600 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA06D22CA12A0D0020A600 /* AuthManager.swift */; };
@@ -114,6 +115,7 @@
 		9FAF06202C95550700C009AF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9FAFFD9D2CBDF8C900F20ED3 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
 		9FAFFDA02CC1076100F20ED3 /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
+		9FAFFDA22CC2A35900F20ED3 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		9FEA06CE2CA129E20020A600 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		9FEA06D02CA129F90020A600 /* ASAuthorizationAppleIDButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ASAuthorizationAppleIDButton+Extension.swift"; sourceTree = "<group>"; };
 		9FEA06D22CA12A0D0020A600 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				9F41C6EB2CA006CB0048A589 /* LoginView.swift */,
+				9FAFFDA22CC2A35900F20ED3 /* LogoView.swift */,
 			);
 			path = LoginView;
 			sourceTree = "<group>";
@@ -539,6 +542,7 @@
 				9FEA06D62CA12A3E0020A600 /* AuthManagerEnvironmentKey.swift in Sources */,
 				9FEA06D82CA12A4F0020A600 /* AuthProvider.swift in Sources */,
 				9FAD60B12CA1488400A54209 /* SignInWithGuestButtonView.swift in Sources */,
+				9FAFFDA32CC2A35900F20ED3 /* LogoView.swift in Sources */,
 				9F41C6FE2CA1289D0048A589 /* SignInWithAppleButtonView.swift in Sources */,
 				9FEA06E82CA132D50020A600 /* SignInWithGoogleButtonView.swift in Sources */,
 				9FEA06CF2CA129E20020A600 /* UIApplication+Extension.swift in Sources */,
