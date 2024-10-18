@@ -24,7 +24,9 @@ struct HomeView: View {
             })
             .tag(Tab.movie)
             
-            FavoriteView()
+            NavigationStack {
+                FavoriteView()
+            }
                 .tabItem({
                     viewModel.selectedTab == .favorite ? Image(systemName: "star.fill") : Image(systemName: "star")
                     Text("Favorite")
