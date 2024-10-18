@@ -46,6 +46,7 @@ public final class FirestoreManager: ObservableObject {
     func resetUserData() {
         DispatchQueue.main.async {
             self.userData = UserData(id: nil, displayName: "Guest", email: "example@example.com", movies: [])
+            self.favorites.removeAll()
         }
     }
     
